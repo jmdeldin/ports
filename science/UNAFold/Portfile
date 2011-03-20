@@ -1,0 +1,51 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+# $Id$
+
+PortSystem          1.0
+
+name                UNAFold
+version             3.8
+categories          science
+platforms           darwin
+maintainers         jmdeldin.com:macports
+description         C Library and programs for the prediction and comparison\
+                    of RNA secondary structures.
+long_description    The UNAFold package contains several programs for   \
+                    performing energy minimization and partition        \
+                    function calculations on nucleic acid sequences.    \
+                    Among the programs is a Perl script, hybrid2.pl,    \
+                    which simulates a one- or two-sequence ensemble of  \
+                    species by running other programs as appropriate.   \
+                    hybrid2.pl is thus the recommended command for most \
+                    purposes.                                           \
+                                                                        \
+                    NOTE: You might want to install the 'mfold_util'    \
+                    port for graphing.
+
+homepage            http://mfold.rna.albany.edu/?q=DINAMelt/software
+master_sites        http://dinamelt.bioinfo.rpi.edu/download/
+license             http://mfold.rna.albany.edu/?q=DINAMelt/non-commercial-license
+
+distfiles           unafold-3.8.tar.gz
+checksums           md5    c1d473c1c4685b7ded51979d8fe4ce0b          \
+                    sha1   b4f0296af9809ecb9f067f5adf17249315a50b7d  \
+                    rmd160 6ccfefbb1c3a6b0315c7a3ed91670fb644b0ceb8
+
+depends_lib         port:gd2
+
+configure.args-append    --prefix=${prefix} --with-apple-opengl-framework
+
+variant noforceconstraints description {Disable force constraints to increase\
+                                        performance} {
+    configure.args-append    --disable-force
+}
+
+variant nogd description {Do not require and compile with the GD library} {
+    configure.args-append    --without-gd
+    depends_lib-delete       port:gd
+}
+
+variant noplots description {Disable plotting with hybrid2.pl} {
+    depends_lib-delete       port:gnuplot
+}

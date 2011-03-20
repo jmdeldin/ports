@@ -1,0 +1,45 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+# $Id$
+
+PortSystem          1.0
+
+name                mfold_util
+version             4.6
+categories          science
+platforms           darwin
+maintainers         jmdeldin.com:macports
+description         These programs display secondary structures (from .ct or \
+                    .ss files) and energy (or probability) dot plots from    \
+                    .plot files.
+
+long_description    These programs display secondary structures (from .ct or \
+                    .ss files) and energy (or probability) dot plots from    \
+                    .plot files. Includes: sir_graph, boxplot, ct_boxplot,   \
+                    overlay_boxplot, Mutplot, and Complot.
+
+homepage            http://mfold.rna.albany.edu/?q=mfold/download-mfold
+master_sites        http://mfold.rna.albany.edu/download/
+license             http://mfold.rna.albany.edu/download/Academic_License.txt
+
+distfiles           mfold_util-4.6.tar.gz
+checksums           md5    15b8cd2d88500bea38007d2620d38b35        \
+                    sha1   8e5c57e10c4002c7315ee9f5137379e83227c430\
+                    rmd160 bb6b3bfa699891cbeff44c4103528152a9dd2294
+
+depends_lib         port:gd2    \
+                    port:libpng \
+                    port:jpeg   \
+                    port:mesa
+
+configure.cflags-append    -g \
+                           -O3
+
+configure.cppflags-append -I/${prefix}/include
+
+configure.ldflags-append  -framework GLUT  \
+                          -framework OpenGL\
+                          -L/${prefix}/lib
+
+configure.args-append    --prefix=${prefix}
+

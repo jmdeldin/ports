@@ -1,0 +1,49 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+# $Id$
+
+PortSystem          1.0
+
+name                ViennaRNA
+version             1.8.5
+categories          science
+platforms           darwin
+maintainers         jmdeldin.com:macports
+description         C Library and programs for the prediction and comparison\
+                    of RNA secondary structures.
+long_description    The Vienna RNA Package consists of a C code library and\
+                    several stand-alone programs for the prediction and\
+                    comparison of RNA secondary structures.
+homepage            http://www.tbi.univie.ac.at/~ivo/RNA/
+master_sites        http://www.tbi.univie.ac.at/~ivo/RNA
+license             http://www.tbi.univie.ac.at/~ivo/RNA/COPYING.html
+
+distfiles           ViennaRNA-1.8.5.tar.gz
+checksums           md5     cd70d63cc1be928a5f0973bd6c211e96         \
+                    sha1    c20dd5ffa6d46ea48de5dd1f3d5e6eff8ae2d385 \
+                    rmd160  5c67030f4e9ff2f5d8c4595178c030781f3a2e56
+depends_lib         port:g2
+
+default_variants +cluster
+
+variant cluster description {Provides AnalyseSeqs and AnalyseDists programs\
+                             for cluster analysis} {
+    configure.args-append    --with-cluster
+}
+
+variant noperl description {Compile without Perl support} {
+    configure.args-append    --without-perl
+}
+
+variant nornaforester description {Do not install RNAForester (compares\
+                                   secondary structures with tree\
+                                   alignment)} {
+    configure.args-append    --without-forester
+    depends_lib-delete       port:g2
+}
+
+variant nokinfold description {Do not install Kinfold (simulates folding\
+                               dynamics of an RNA molecule)} {
+    configure.args-append    --without-kinfold
+}
+
