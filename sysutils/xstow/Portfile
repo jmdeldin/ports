@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+# $Id$
+
+PortSystem          1.0
+
+name                xstow
+version             1.0.0
+categories          sysutils
+platforms           darwin
+maintainers         jmdeldin.com:macports
+description         XStow is a replacement of GNU Stow written in C++. It\
+                    supports all features of Stow with some extensions.
+long_description    XStow as GNU Stow, are programs for managing the        \
+                    installation of software packages, keeping them separate\
+                    (/usr/local/stow/emacs vs. /usr/local/stow/perl, for    \
+                    example) while making them appear to be installed in the\
+                    same place (/usr/local).
+homepage            http://xstow.sourceforge.net/
+master_sites        http://sourceforge.net/projects/xstow/files/
+license             GPL-2
+
+distfiles           xstow-1.0.0.tar.bz2
+checksums           md5    5ccf55ca64d74d7b2a26c27eac8b6f97         \
+                    sha1   e4e68fbf05150067d82ce526cb784c5c91107ec9 \
+                    rmd160 cfb4200e580f4cb61b3ad4b1fc7a4655f477e237
+
+use_bzip2           yes
+
+# disable-static avoids the "ld: library not found for -lcrt0.o" error
+configure.args-append    --without-curses --disable-static
+
