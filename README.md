@@ -5,6 +5,7 @@ These are custom Portfiles I've written for MacPorts. The following ports are
 currently included:
 
 * mfold_util
+* ncbi-blast+
 * UNAFold
 * ViennaRNA
 * xstow

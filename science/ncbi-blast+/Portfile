@@ -1,0 +1,38 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+# $Id$
+
+PortSystem          1.0
+
+name                ncbi-blast+
+version             2.2.25
+categories          science
+platforms           darwin
+maintainers         jmdeldin.com:macports
+description         The Basic Local Alignment Search Tool finds regions\
+    of local similarity between sequences.
+long_description    The Basic Local Alignment Search Tool (BLAST) finds\
+    regions of local similarity between sequences. The program compares\
+    nucleotide or protein sequences to sequence databases and calculates\
+    the statistical significance of matches. BLAST can be used to infer\
+    functional and evolutionary relationships between sequences as well\
+    as help identify members of gene families.
+homepage            http://blast.ncbi.nlm.nih.gov/Blast.cgi
+master_sites        ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/
+license             Public Domain
+
+distfiles           ncbi-blast-${version}+-universal-macosx.tar.gz
+checksums           md5    f6e4c5e38ea9caf1963b3ab3a33480c7        \
+                    sha1   9e4a7d1846cc6eafaf5ca4b1256813e40436a00a\
+                    rmd160 10ada946ae3868be4024bc0699ab37bd125e80b7
+notes               "This installs the precompiled binaries from NCBI."
+use_configure       no
+
+build {}
+
+destroot {
+    # move files from ncbi-blast-2.2.25+/bin to destroot/bin
+    eval xinstall -m 755 [glob ${workpath}/ncbi-blast-${version}+/bin/*] \
+        ${destroot}${prefix}/bin
+}
+
