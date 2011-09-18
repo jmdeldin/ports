@@ -1,6 +1,6 @@
 desc 'Add ports to the index'
 task :index do |t|
-  sh 'sudo portindex -f -d'
+  sh 'portindex -f -d'
 end
 
 desc 'Create a new portfile'
