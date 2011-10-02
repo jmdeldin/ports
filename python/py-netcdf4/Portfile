@@ -1,0 +1,29 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-netcdf4
+version             0.9.7
+categories-append   science
+platforms           darwin
+maintainers         jmdeldin.com:macports
+description         Python interface to the netCDF version 4 library.
+long_description    ${description}
+homepage            http://code.google.com/p/netcdf4-python/
+master_sites        http://netcdf4-python.googlecode.com/files/
+license             MIT
+
+distname            netCDF4-${version}
+checksums           md5    72130610ab4e062717df74a17fde29fc         \
+                    sha1   24d2ba80d7f7a9c9f258b05ed6500f4f9d015c71 \
+                    rmd160 3293b818e65aafc3b7b2904955114acba227e13f
+
+depends_lib-append  port:py-scientific
+
+python.default_version 27
+python.versions        26 27
+
+build.env-append USE_NCCONFIG=1
+destroot.env     USE_NCCONFIG=1
+
