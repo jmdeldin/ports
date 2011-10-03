@@ -1,0 +1,29 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+PortSystem          1.0
+name                foldalign
+version             2.1.1
+categories          science
+platforms           darwin
+maintainers         jmdeldin.com:macports
+description         FOLDALIGN is a tool for aligning RNA structures.
+long_description    FOLDALIGN is an algorithm for local or global\
+    simultaneous folding and aligning two or more RNA sequences\
+    and is based on the Sankoffs algorithm. Foldalign can make\
+    pairwise local or global alignments and structure predictions.
+
+homepage            http://foldalign.ku.dk/index.html
+master_sites        http://foldalign.ku.dk/software/
+license             GPL-2
+distname            foldalign.${version}
+checksums           md5    9582da1b1b87f94063428a4c09181c8b        \
+                    sha1   512f40d846338d4159aa1d8d3e03427dc9a828c4\
+                    rmd160 641d36c4f9eafca59679fb6153329038d8441719
+use_configure       no
+use_automake        no
+
+destroot {
+    # move files from foldalign.2.1.1/bin to destroot/bin
+    eval xinstall -m 755 [glob ${workpath}/${distname}/bin/*] \
+        ${destroot}${prefix}/bin
+}
