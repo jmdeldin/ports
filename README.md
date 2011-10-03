@@ -4,8 +4,10 @@ Ports
 These are custom Portfiles I've written for MacPorts. The following ports are
 currently included:
 
+* foldalign
 * mfold_util
 * ncbi-blast+
+* py-netcdf4
 * UNAFold
 * ViennaRNA
 * xstow
